@@ -5,7 +5,7 @@
 void cekSaldo(){
     printf("Saldo anda : %lld", saldo);
 }
-
+   
 void tarikTunai(){
     int nml;
     printf("Batas maksimal penarikan : Rp. 2.500.000 ");
