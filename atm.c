@@ -18,12 +18,16 @@ void tarik50(){
     scanf("%d", &nml);
     getchar();
     if (nml%50000==0){
-        if (nml <=2500000){                    
-            printf("Anda telah menarik tunai sebesar %d", nml);
-            atm.saldo -= nml; nml=0;
-            printf("\nSaldo anda sekarang %lld", atm.saldo);
+        if (atm.saldo>=nml){
+            if (nml <=1250000){                    
+                printf("Anda telah menarik tunai sebesar %d", nml);
+                atm.saldo -= nml; nml=0;
+                printf("\nSaldo anda sekarang %lld", atm.saldo);
+            }else{
+                printf("Transfer gagal, nominal transfer melebihi batas maksimal");
+            }
         }else{
-            printf("Transfer gagal, nominal transfer melebihi batas maksimal");
+            printf("Saldo anda tidak cukup");
         }
     }else{
         printf("Nominal harus kelipatan 50.000\n");
