@@ -7,6 +7,35 @@ typedef struct{
 
 ATM atm = {1111, 112233, 10000000};
 
+void tarikTunai1(){
+int nml= 300000;
+    printf("Anda telah menarik tunai sebesar %d", nml);
+    atm.saldo -= nml;
+    printf("\nSisa saldo anda sebesar %d", atm.saldo);
+}
+
+void tarikTunai2(){
+int nml= 500000;
+    printf("Anda telah menarik tunai sebesar %d", nml);
+        atm.saldo -= nml;
+    printf("\nSisa saldo anda sebesar %d", atm.saldo);
+}
+
+void tarikTunai3(){
+int nml= 1000000;
+    printf("Anda telah menarik tunai sebesar %d", nml);
+        atm.saldo -= nml;
+    printf("\nSisa saldo anda sebesar %d", atm.saldo);
+}
+
+void tarikTunai4(){
+int nml= 2500000;
+    printf("Anda telah menarik tunai sebesar %d", nml);
+        atm.saldo -= nml;
+    printf("\nSisa saldo anda sebesar %d", atm.saldo);
+}
+
+
 void cekSaldo(){
     printf("Saldo anda : %lld", atm.saldo);
 }
@@ -122,43 +151,61 @@ void ubahPin(){
     
 }
 int main(){
-    char cek;
-    int i =0, menu,pin;
+
+    int i =3, menu,pin, cek;
     printf("Selamat datang di ATM Smart Money\n");
-    do{
-        while(i<3){
-            printf("\nMasukan PIN anda :");
-            scanf("%d", &pin);
-            getchar();
-            if(atm.PIN == pin){
+    do {
+        do{ 
+        printf("\nMasukan PIN anda :");
+        scanf("%d", &pin);
+        getchar();
+
+        if(atm.PIN == pin){
+            // menu menu
                 printf("=======Selamat datang======");
-                printf("\n1. Cek saldo");
-                printf("\n2. Tarik tunai");
-                printf("\n3. Transfer");   
-                printf("\n4. Ubah PIN");   
-                printf("\n5. Keluar");   
+                printf("\n1. 300.000,-       5. Cek saldo");
+                printf("\n2. 500.000,-       6. Tarik tunai");
+                printf("\n3. 1.000.000,-     7. Transfer");
+                printf("\n4. 2.500.000,-     8. Ubah PIN");
+                printf("\n0. Keluar");
                 printf("\n=========================");
                 printf("\nPilih menu : ");
                 scanf("%d", &menu);      
                 getchar();
                 switch (menu){
                 case 1:
-                    cekSaldo();
+                    tarikTunai1();
                     break;
 
                 case 2:
-                    tarikTunai(); 
+                    tarikTunai2();
                     break;
 
                 case 3:
-                    transfer();
+                    tarikTunai3();
                     break;
 
                 case 4:
-                    ubahPin();
+                    tarikTunai4();
                     break;
 
                 case 5:
+                    cekSaldo();
+                    break;
+
+                case 6:
+                    tarikTunai(); 
+                    break;
+
+                case 7:
+                    transfer();
+                    break;
+
+                case 8:
+                    ubahPin();
+                    break;
+
+                case 0:
                     printf("Terima kasih telah menggunakan layanan kami");
                     return 0;
                     break;
@@ -167,30 +214,28 @@ int main(){
                     printf("Menu tidak ditemukan, harap coba lagi");
                     break;
                 }
-                printf("\nApakah anda ingin melakukan transaksi lagi? (Y/T) : ");
-                scanf("%c", &cek);
+                printf("\nApakah anda ingin melakukan transaksi lagi? tekan 1 jika ya : ");
+                scanf("%d", &cek);
                 getchar();
-                if(cek != 'y' && cek != 'Y'){
+                if(cek != 1){
                     printf("Transaksi selesai");
                     printf("\nTerima kasih telah menggunakan layanan kami");    
                     return 0;
                 } 
-                i = 0;
-            }else{
-                printf("PIN anda salah, coba ulang lagi");
-                printf("\nKesempatan ke-%d ", i+1);
-                i++;
-            }
-        }       
-        printf("Kesempatan anda habis. \nAkun anda terblokir, silahkan hubungi admin");
-    }while(cek == 'y' || cek == 'Y');
+        } else {
+            printf("PIN anda salah, coba ulang lagi");
+            i--;
+            printf("\nSisa Kesempatan Anda %d ", i);
+        }
 
-
-
-
-
-
-
+        if (i < 1) {
+            printf("Kesempatan anda habis. \nAkun anda terblokir, silahkan hubungi admin");
+            return 0;
+        }
+        
+        } while(i > 0);
+        i = 3;
+    } while (cek == 1); 
 
     
     return 0;
